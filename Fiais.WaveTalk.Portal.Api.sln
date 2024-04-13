@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Api", "Fiais.WaveTalk.Portal.Api\Fiais.WaveTalk.Portal.Api.csproj", "{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presenter", "1 - Presenter", "{1151D143-C80C-4126-AE34-51F4F5D79F82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{B44741F6-C6CE-4172-AB4D-42BF780FFA3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{EC82C35A-272F-4907-AF2E-09464D77CAD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{67D6A194-5406-465D-A4D8-4921B6971D1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.UseCase", "Fiais.WaveTalk.Portal.UseCase\Fiais.WaveTalk.Portal.UseCase.csproj", "{3600A781-A41B-49E3-9D10-0B8EB5E978F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Application", "Fiais.WaveTalk.Portal.Application\Fiais.WaveTalk.Portal.Application.csproj", "{4E954E4B-6829-43CF-B682-5663B133A2D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Domain", "Fiais.WaveTalk.Portal.Domain\Fiais.WaveTalk.Portal.Domain.csproj", "{A147CD0C-CA7D-439A-BD3F-5CAC7BA2706E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Infra.Data", "Fiais.WaveTalk.Portal.Infra.Data\Fiais.WaveTalk.Portal.Infra.Data.csproj", "{BDC7B607-EAA7-4734-8B20-37B0696DEC6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.UseCase.Contracts", "Fiais.WaveTalk.Portal.UseCase.Contracts\Fiais.WaveTalk.Portal.UseCase.Contracts.csproj", "{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Configurations", "5 - Configurations", "{68F73F5E-B17F-4D54-9144-ACC8BA8EE763}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Configuration", "Fiais.WaveTalk.Portal.Configuration\Fiais.WaveTalk.Portal.Configuration.csproj", "{AAD4331B-092E-4B81-A95C-E8674AE02A39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Hub", "Fiais.WaveTalk.Portal.Hub\Fiais.WaveTalk.Portal.Hub.csproj", "{048ADA89-102E-4384-816E-E3D2117B7955}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3600A781-A41B-49E3-9D10-0B8EB5E978F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3600A781-A41B-49E3-9D10-0B8EB5E978F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3600A781-A41B-49E3-9D10-0B8EB5E978F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3600A781-A41B-49E3-9D10-0B8EB5E978F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E954E4B-6829-43CF-B682-5663B133A2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E954E4B-6829-43CF-B682-5663B133A2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E954E4B-6829-43CF-B682-5663B133A2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E954E4B-6829-43CF-B682-5663B133A2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A147CD0C-CA7D-439A-BD3F-5CAC7BA2706E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A147CD0C-CA7D-439A-BD3F-5CAC7BA2706E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A147CD0C-CA7D-439A-BD3F-5CAC7BA2706E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A147CD0C-CA7D-439A-BD3F-5CAC7BA2706E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC7B607-EAA7-4734-8B20-37B0696DEC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC7B607-EAA7-4734-8B20-37B0696DEC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC7B607-EAA7-4734-8B20-37B0696DEC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC7B607-EAA7-4734-8B20-37B0696DEC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAD4331B-092E-4B81-A95C-E8674AE02A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAD4331B-092E-4B81-A95C-E8674AE02A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAD4331B-092E-4B81-A95C-E8674AE02A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAD4331B-092E-4B81-A95C-E8674AE02A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048ADA89-102E-4384-816E-E3D2117B7955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048ADA89-102E-4384-816E-E3D2117B7955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048ADA89-102E-4384-816E-E3D2117B7955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048ADA89-102E-4384-816E-E3D2117B7955}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4} = {1151D143-C80C-4126-AE34-51F4F5D79F82}
+		{3600A781-A41B-49E3-9D10-0B8EB5E978F8} = {B44741F6-C6CE-4172-AB4D-42BF780FFA3C}
+		{4E954E4B-6829-43CF-B682-5663B133A2D6} = {B44741F6-C6CE-4172-AB4D-42BF780FFA3C}
+		{A147CD0C-CA7D-439A-BD3F-5CAC7BA2706E} = {EC82C35A-272F-4907-AF2E-09464D77CAD7}
+		{BDC7B607-EAA7-4734-8B20-37B0696DEC6D} = {67D6A194-5406-465D-A4D8-4921B6971D1C}
+		{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2} = {B44741F6-C6CE-4172-AB4D-42BF780FFA3C}
+		{AAD4331B-092E-4B81-A95C-E8674AE02A39} = {68F73F5E-B17F-4D54-9144-ACC8BA8EE763}
+		{048ADA89-102E-4384-816E-E3D2117B7955} = {B44741F6-C6CE-4172-AB4D-42BF780FFA3C}
+	EndGlobalSection
+EndGlobal
