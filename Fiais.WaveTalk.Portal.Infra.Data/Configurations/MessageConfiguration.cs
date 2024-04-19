@@ -16,11 +16,11 @@ internal sealed class MessageConfiguration : BaseConfiguration<Message>
         builder.HasOne(x => x.User)
             .WithMany(x => x.Messages)
             .HasForeignKey(x => x.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
         
         builder.HasOne(x => x.ChatRoom)
             .WithMany(x => x.Messages)
             .HasForeignKey(x => x.ChatRoomId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

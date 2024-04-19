@@ -16,8 +16,8 @@ public class ChatRoomController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetChatRooms() => new ApiResult(await _chatRoomModule.GetChatRooms.Execute());
+    public async Task<IActionResult> Get() => new ApiResult(await _chatRoomModule.Get.Execute());
     
-    [HttpGet("user")]
-    public async Task<IActionResult> GetChatRoomsUser() => new ApiResult(await _chatRoomModule.GetChatRoomsUser.Execute());
+    [HttpGet("user-logged")]
+    public async Task<IActionResult> GetByLoggedUser() => new ApiResult(await _chatRoomModule.GetByLoggedUser.Execute());
 }

@@ -5,7 +5,7 @@ using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Authenticate;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Fiais.WaveTalk.Portal.UseCase.UseCases.User;
+namespace Fiais.WaveTalk.Portal.UseCase.Cases.User;
 
 internal sealed class Authenticate : IAuthenticate
 {
@@ -16,10 +16,10 @@ internal sealed class Authenticate : IAuthenticate
         _repositoryModule = repositoryModule;
     }
     
-    public async Task<string> Execute(AuthenticateDto model)
+    public async Task<string> Execute(AuthenticateRequest model)
     {
         model.Format();
-        var user = await _repositoryModule.UserRepository.GetByEmailOrUsername(model.EmailOrUsername);
+        var user = await _repositoryModule.UserRepository.GetByEmailOrUsername(model.EmailOrUsername, model.EmailOrUsername);
 
         if (user?.Password != model.Password) throw new ApplicationUnauthorizedException();
 

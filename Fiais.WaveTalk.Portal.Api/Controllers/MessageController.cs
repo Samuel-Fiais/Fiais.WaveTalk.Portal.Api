@@ -17,6 +17,6 @@ public class MessageController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<IActionResult> GetMessagesByChatRoom(Guid id) =>
-        new ApiResult(await _messageModule.GetMessageByChatRoom.Execute(id));
+    public async Task<IActionResult> GetByChatRoom(Guid id) =>
+        new ApiResult(await _messageModule.GetByChatRoom.Execute(id));
 }

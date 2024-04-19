@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Modules\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.Domain\Fiais.WaveTalk.Portal.Domain.csproj" />
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.UseCase.Contracts\Fiais.WaveTalk.Portal.UseCase.Contracts.csproj" />
     </ItemGroup>

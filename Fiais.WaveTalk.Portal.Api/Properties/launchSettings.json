@@ -17,7 +17,7 @@
       "applicationUrl": "http://localhost:5249",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONNECTION_STRING": "Data Source=Database.db"
+        "CONNECTION_STRING": "Server=tcp:wavechat-prd-server.database.windows.net,1433;Initial Catalog=wavechat-prd-database;Persist Security Info=False;User ID=wavechat-prd-root;Password=100Symon#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False"
       }
     },
     "https": {

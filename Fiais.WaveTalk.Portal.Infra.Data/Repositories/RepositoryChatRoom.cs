@@ -24,7 +24,15 @@ internal sealed class RepositoryChatRoom : IRepositoryChatRoom
         return await _context.ChatRooms
             .Include(c => c.Users)
             .Include(c => c.Owner)
-            .Where(c => c.Users.Any(u => u.Id == new Guid("f230187d-6de9-4a0a-8618-d22976f0772e")))
+            .Where(c => c.Users.Any(u => u.Id == id))
             .ToListAsync();
+    }
+    
+    public async Task<ChatRoom?> GetById(Guid id)
+    {
+        return await _context.ChatRooms
+            .Include(c => c.Users)
+            .Include(c => c.Owner)
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
 }

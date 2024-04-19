@@ -22,6 +22,14 @@ internal sealed class UserConfiguration : BaseConfiguration<User>
         builder.Property(x => x.Password)
             .IsRequired();
         
+        builder.HasMany(x => x.ChatRooms)
+            .WithMany(x => x.Users)
+            .UsingEntity<Dictionary<string, object>>(
+                "ChatRoomUser",
+                x => x.HasOne<ChatRoom>().WithMany().HasForeignKey("ChatRoomId").OnDelete(DeleteBehavior.NoAction),
+                x => x.HasOne<User>().WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.NoAction)
+            );
+        
         builder.HasMany(x => x.Messages)
             .WithOne(x => x.User)
             .HasForeignKey(x => x.UserId)
@@ -30,6 +38,6 @@ internal sealed class UserConfiguration : BaseConfiguration<User>
         builder.HasMany(x => x.OwnedChatRooms)
             .WithOne(x => x.Owner)
             .HasForeignKey(x => x.OwnerId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

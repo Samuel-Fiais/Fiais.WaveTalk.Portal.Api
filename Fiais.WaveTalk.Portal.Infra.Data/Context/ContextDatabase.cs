@@ -6,7 +6,7 @@ namespace Fiais.WaveTalk.Portal.Infra.Data.Context;
 
 public sealed class ContextDatabase : DbContext
 {
-    public DbSet<User?> Users { get; set; }
+    public DbSet<User> Users { get; set; }
     public DbSet<ChatRoom> ChatRooms { get; set; }
     public DbSet<Message> Messages { get; set; }
     

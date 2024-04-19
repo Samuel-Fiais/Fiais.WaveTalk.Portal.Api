@@ -1,6 +1,6 @@
-namespace Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetMessageByChatRoom;
+namespace Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetByChatRoom;
 
-public sealed record GetMessageByChatRoomDto
+public sealed record GetByChatRoomResponse
 {
     public Guid Id { get; set;  } = Guid.Empty;
     public Guid UserId { get; set; } = Guid.Empty;

@@ -17,6 +17,6 @@ public class AuthenticateController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Authenticate(AuthenticateDto dto) =>
-        new ApiResult(await _userModule.Authenticate.Execute(dto));
+    public async Task<IActionResult> Authenticate(AuthenticateRequest model) =>
+        new ApiResult(await _userModule.Authenticate.Execute(model));
 }

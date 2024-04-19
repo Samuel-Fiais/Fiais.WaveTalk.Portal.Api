@@ -3,16 +3,18 @@ using Fiais.WaveTalk.Portal.Application.Helpers;
 using Fiais.WaveTalk.Portal.Domain.Context;
 using Fiais.WaveTalk.Portal.Domain.Entity;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
+using Fiais.WaveTalk.Portal.Hub.Models;
+using Fiais.WaveTalk.Portal.Hub.Shared;
 using Fiais.WaveTalk.Portal.Infra.Data.Context;
 using Fiais.WaveTalk.Portal.Infra.Data.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetChatRooms;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByLoggedUser;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.Message;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetMessageByChatRoom;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetByChatRoom;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User;
-using Fiais.WaveTalk.Portal.UseCase.UseCases.ChatRoom;
-using Fiais.WaveTalk.Portal.UseCase.UseCases.Message;
-using Fiais.WaveTalk.Portal.UseCase.UseCases.User;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
+using Fiais.WaveTalk.Portal.UseCase.Modules;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +34,18 @@ public static class Configuration
     {
         var autoMapper = new MapperConfiguration(config =>
         {
-            config.CreateMap<ChatRoom, GetChatRoomsDto>();
-            config.CreateMap<Message, GetMessageByChatRoomDto>()
+            config.CreateMap<ChatRoom, GetResponse>();
+            config.CreateMap<ChatRoom, GetByLoggedUserResponse>()
+                .ForMember(x => x.OwnerName, x => x.MapFrom(y => y.Owner!.Name))
+                .ForMember(x => x.OwnerUsername, x => x.MapFrom(y => y.Owner!.Username))
+                .ForMember(x => x.OwnerEmail, x => x.MapFrom(y => y.Owner!.Email));
+            config.CreateMap<User, GetByLoggedUserResponse.User>();
+            
+            config.CreateMap<Message, GetByChatRoomResponse>()
                 .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
+            config.CreateMap<Message, MessageResponse>()
+                .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
+            config.CreateMap<CreateRequest, User>();
         });
 
         var mapper = autoMapper.CreateMapper();
@@ -58,13 +69,17 @@ public static class Configuration
         services.AddScoped<IMessageModule, MessageModule>();
         services.AddScoped<IUserContext, UserContext>();
         services.AddScoped<IRepositoryModule, RepositoryModule>();
+
+        services.AddSingleton<ConnectionSingleton>();
+        
+        services.AddSignalR();
     }
 
     public static void LoadDatabase(IServiceCollection services)
     {
         var connection = Environment.GetEnvironmentVariable("CONNECTION_STRING") ?? string.Empty;
 
-        services.AddDbContext<ContextDatabase>(options => { options.UseSqlite(connection); });
+        services.AddDbContext<ContextDatabase>(options => { options.UseSqlServer(connection); });
 
         using var context = services.BuildServiceProvider()
             .GetRequiredService<ContextDatabase>();

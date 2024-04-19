@@ -1,8 +1,8 @@
-using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetMessageByChatRoom;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetByChatRoom;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Contracts.Message;
 
 public interface IMessageModule
 {
-    IGetMessageByChatRoom GetMessageByChatRoom { get; }
+    IGetByChatRoom GetByChatRoom { get; }
 }

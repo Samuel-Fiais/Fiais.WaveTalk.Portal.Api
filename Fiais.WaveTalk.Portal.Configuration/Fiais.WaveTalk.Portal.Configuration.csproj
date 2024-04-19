@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.Application\Fiais.WaveTalk.Portal.Application.csproj" />
+      <ProjectReference Include="..\Fiais.WaveTalk.Portal.Hub\Fiais.WaveTalk.Portal.Hub.csproj" />
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.Infra.Data\Fiais.WaveTalk.Portal.Infra.Data.csproj" />
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.UseCase.Contracts\Fiais.WaveTalk.Portal.UseCase.Contracts.csproj" />
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.UseCase\Fiais.WaveTalk.Portal.UseCase.csproj" />

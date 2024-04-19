@@ -2,17 +2,17 @@ using AutoMapper;
 using Fiais.WaveTalk.Portal.Application.Exceptions;
 using Fiais.WaveTalk.Portal.Domain.Context;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetMessageByChatRoom;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetByChatRoom;
 
-namespace Fiais.WaveTalk.Portal.UseCase.UseCases.Message;
+namespace Fiais.WaveTalk.Portal.UseCase.Cases.Message;
 
-internal sealed class GetMessageByChatRoom : IGetMessageByChatRoom
+internal sealed class GetByChatRoom : IGetByChatRoom
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IUserContext _userContext;
     private readonly IMapper _mapper;
     
-    public GetMessageByChatRoom(
+    public GetByChatRoom(
         IRepositoryModule repositoryModule,
         IUserContext userContext,
         IMapper mapper)
@@ -22,7 +22,7 @@ internal sealed class GetMessageByChatRoom : IGetMessageByChatRoom
         _mapper = mapper;
     }
     
-    public async Task<ICollection<GetMessageByChatRoomDto>> Execute(Guid id)
+    public async Task<ICollection<GetByChatRoomResponse>> Execute(Guid id)
     {
         var userId = _userContext.Id;
         
@@ -34,6 +34,6 @@ internal sealed class GetMessageByChatRoom : IGetMessageByChatRoom
         
         var message = await _repositoryModule.MessageRepository.GetAllByChatRoom(id);
         
-        return _mapper.Map<ICollection<GetMessageByChatRoomDto>>(message);
+        return _mapper.Map<ICollection<GetByChatRoomResponse>>(message.OrderBy(x => x.CreatedAt));
     }
 }

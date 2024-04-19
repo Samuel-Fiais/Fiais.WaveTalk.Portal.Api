@@ -43,6 +43,6 @@ internal abstract class BaseConfiguration<T> : BaseConfiguration, IEntityTypeCon
 
         builder.Property(x => x.CreatedAt)
             .ValueGeneratedOnAdd()
-            .HasDefaultValueSql("datetime('now')");
+            .HasDefaultValueSql("GETDATE()");
     }
 }

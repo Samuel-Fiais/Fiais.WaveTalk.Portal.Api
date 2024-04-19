@@ -1,5 +1,6 @@
 using Fiais.WaveTalk.Portal.Api.Middlewares;
 using Fiais.WaveTalk.Portal.Configuration;
+using Fiais.WaveTalk.Portal.Hub.Hub;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,17 +13,22 @@ Configuration.LoadSwagger(builder.Services, builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("reactApp", corsPolicyBuilder => {
+        corsPolicyBuilder.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors(policy => policy
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowAnyOrigin());
+app.UseCors("reactApp");
 
 app.UseSession();
 
@@ -35,5 +41,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseMiddleware<SessionMiddleware>();
 
 app.MapControllers();
+
+app.MapHub<ChatHub>("/chat-hub");
 
 app.Run();
