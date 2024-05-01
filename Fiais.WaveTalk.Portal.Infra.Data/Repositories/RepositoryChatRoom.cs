@@ -35,4 +35,12 @@ internal sealed class RepositoryChatRoom : IRepositoryChatRoom
             .Include(c => c.Owner)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
+
+    public async Task<ChatRoom> Create(ChatRoom chatRoom)
+    {
+        await _context.ChatRooms.AddAsync(chatRoom);
+        await _context.SaveChangesAsync();
+
+        return chatRoom;
+    }
 }

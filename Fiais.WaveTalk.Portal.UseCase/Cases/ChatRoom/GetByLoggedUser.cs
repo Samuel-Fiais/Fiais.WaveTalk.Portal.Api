@@ -35,13 +35,8 @@ internal sealed class GetByLoggedUser : IGetByLoggedUser
         }
 
         var chatRooms = await _repositoryModule.ChatRoomRepository.GetByUser((Guid)userId);
-        // chatRoom * 20
-        chatRooms = chatRooms.Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms)
-            .Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms)
-            .Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms)
-            .Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms).Concat(chatRooms)
-            .ToList();
 
+        chatRooms = [.. chatRooms.OrderByDescending(x => x.AlternateId)];
         return _mapper.Map<ICollection<GetByLoggedUserResponse>>(chatRooms);
     }
 }

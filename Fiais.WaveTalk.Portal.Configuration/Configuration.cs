@@ -8,6 +8,7 @@ using Fiais.WaveTalk.Portal.Hub.Shared;
 using Fiais.WaveTalk.Portal.Infra.Data.Context;
 using Fiais.WaveTalk.Portal.Infra.Data.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByLoggedUser;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.Message;
@@ -38,14 +39,17 @@ public static class Configuration
             config.CreateMap<ChatRoom, GetByLoggedUserResponse>()
                 .ForMember(x => x.OwnerName, x => x.MapFrom(y => y.Owner!.Name))
                 .ForMember(x => x.OwnerUsername, x => x.MapFrom(y => y.Owner!.Username))
-                .ForMember(x => x.OwnerEmail, x => x.MapFrom(y => y.Owner!.Email));
+                .ForMember(x => x.OwnerEmail, x => x.MapFrom(y => y.Owner!.Email))
+                .ForMember(x => x.AlternateId, x => x.MapFrom(x => x.AlternateId.ToString().PadLeft(5, '0')));
             config.CreateMap<User, GetByLoggedUserResponse.User>();
-            
             config.CreateMap<Message, GetByChatRoomResponse>()
                 .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
+            config.CreateMap<CreateRequestChatRoom, ChatRoom>();
+
             config.CreateMap<Message, MessageResponse>()
                 .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
-            config.CreateMap<CreateRequest, User>();
+
+            config.CreateMap<CreateRequestUser, User>();
         });
 
         var mapper = autoMapper.CreateMapper();

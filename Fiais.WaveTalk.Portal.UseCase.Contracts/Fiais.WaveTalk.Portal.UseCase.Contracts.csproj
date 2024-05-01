@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.Application\Fiais.WaveTalk.Portal.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ChatRoom/GetByAlternateId/" />
+    </ItemGroup>
+
 </Project>

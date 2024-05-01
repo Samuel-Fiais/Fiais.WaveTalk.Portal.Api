@@ -8,13 +8,13 @@ internal sealed class Get : IGet
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IMapper _mapper;
-    
+
     public Get(IRepositoryModule repositoryModule, IMapper mapper)
     {
         _repositoryModule = repositoryModule;
         _mapper = mapper;
     }
-    
+
     public async Task<ICollection<GetResponse>> Execute()
     {
         var chatRooms = await _repositoryModule.ChatRoomRepository.GetAll();

@@ -16,12 +16,12 @@ public class Create : ICreate
         _mapper = mapper;
     }
     
-    public async Task<bool> Execute(CreateRequest model)
+    public async Task<bool> Execute(CreateRequestUser request)
     {
-        model.Format();
-        await Validate(model.Email, model.Username);
+        request.Format();
+        await Validate(request.Email, request.Username);
         
-        var user = _mapper.Map<Domain.Entity.User>(model);
+        var user = _mapper.Map<Domain.Entity.User>(request);
         
         await _repositoryModule.UserRepository.Create(user);
         

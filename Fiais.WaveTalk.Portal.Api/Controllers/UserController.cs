@@ -17,5 +17,5 @@ public class UserController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateRequest model) => new ApiResult(await _userModule.Create.Execute(model)); 
+    public async Task<IActionResult> Create([FromBody] CreateRequestUser request) => new ApiResult(await _userModule.Create.Execute(request)); 
 }

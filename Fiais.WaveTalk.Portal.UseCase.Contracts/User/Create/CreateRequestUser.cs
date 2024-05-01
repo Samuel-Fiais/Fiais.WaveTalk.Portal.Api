@@ -3,7 +3,7 @@ using Fiais.WaveTalk.Portal.Application.Extensions;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
 
-public sealed record CreateRequest
+public sealed record CreateRequestUser
 {
     [Required(ErrorMessage = "Username is required.")]
     public string Username { get; set; } = string.Empty;

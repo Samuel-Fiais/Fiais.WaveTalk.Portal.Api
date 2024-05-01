@@ -15,11 +15,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("reactApp", corsPolicyBuilder => {
+    options.AddPolicy("reactApp", corsPolicyBuilder =>
+    {
         corsPolicyBuilder.WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials();
+            .AllowCredentials()
+            .SetIsOriginAllowed((host) => true);
     });
 });
 

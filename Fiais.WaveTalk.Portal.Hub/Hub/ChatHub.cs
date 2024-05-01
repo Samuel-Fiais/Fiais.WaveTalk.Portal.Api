@@ -14,7 +14,7 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
     private readonly IUserContext _userContext;
     private readonly ConnectionSingleton _connectionSingleton;
     private readonly IMapper _mapper;
-    
+
     public ChatHub(
         IRepositoryModule repositoryModule,
         IUserContext userContext,
@@ -26,29 +26,29 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
         _connectionSingleton = connectionSingleton;
         _mapper = mapper;
     }
-    
+
     public override async Task OnConnectedAsync()
     {
         var chatRooms = await _repositoryModule.ChatRoomRepository.GetAll();
-        
+
         foreach (var chatRoom in chatRooms)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, chatRoom.Id.ToString());
         }
     }
-    
+
     public async Task JoinChat(Guid userId)
     {
         if (userId == Guid.Empty) return;
-        
+
         var user = await _repositoryModule.UserRepository.GetById(userId);
-        
+
         if (user is null) return;
-        
+
         var connectionExists = _connectionSingleton.Connections.Values.Any(x => x?.UserId == userId);
-        
+
         if (connectionExists) _connectionSingleton.RemoveConnectionByUserId(userId);
-        
+
         _connectionSingleton.Connections[Context.ConnectionId] = new UserConnection()
         {
             UserId = userId,
@@ -57,9 +57,11 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
             Email = user.Email
         };
     }
-    
+
     public async Task SendMessage(string message, Guid chatRoomId)
     {
+        if (string.IsNullOrEmpty(message)) return;
+
         if (_connectionSingleton.Connections.TryGetValue(Context.ConnectionId, out UserConnection? conn))
         {
             if (conn is not null)
@@ -70,11 +72,21 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
                     UserId = conn.UserId,
                     Content = message
                 };
-                
+
                 var messageCreated = await _repositoryModule.MessageRepository.Create(messageEntity);
-                
+
                 await Clients.Group(chatRoomId.ToString()).SendAsync("ReceiveMessage", _mapper.Map<MessageResponse>(messageCreated));
             }
+        }
+    }
+
+    public async Task RefreshChatRooms()
+    {
+        var chatRooms = await _repositoryModule.ChatRoomRepository.GetAll();
+
+        foreach (var chatRoom in chatRooms)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, chatRoom.Id.ToString());
         }
     }
 }

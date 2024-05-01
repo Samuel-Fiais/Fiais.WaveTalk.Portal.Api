@@ -21,9 +21,20 @@ internal sealed class RepositoryUser : IRepositoryUser
     public async Task<User?> GetById(Guid id) =>
         await _context.Users.FindAsync(id);
 
+    public async Task<User?> GetByIdWithChatRooms(Guid id) =>
+        await _context.Users
+            .Include(u => u.ChatRooms)
+            .FirstOrDefaultAsync(u => u.Id == id);
+
     public async Task<bool> Create(User user)
     {
         _context.Users.Add(user);
+        return await _context.SaveChangesAsync() > 0;
+    }
+
+    public async Task<bool> Update(User user)
+    {
+        _context.Users.Update(user);
         return await _context.SaveChangesAsync() > 0;
     }
 }

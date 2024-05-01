@@ -1,3 +1,4 @@
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByLoggedUser;
 
@@ -7,4 +8,5 @@ public interface IChatRoomModule
 {
     IGet Get { get; }
     IGetByLoggedUser GetByLoggedUser { get; }
+    ICreate Create { get; }
 }

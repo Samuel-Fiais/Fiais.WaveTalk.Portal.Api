@@ -1,5 +1,6 @@
 using Fiais.WaveTalk.Portal.Api.Middlewares;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiais.WaveTalk.Portal.Api.Controllers;
@@ -20,4 +21,7 @@ public class ChatRoomController : ControllerBase
     
     [HttpGet("user-logged")]
     public async Task<IActionResult> GetByLoggedUser() => new ApiResult(await _chatRoomModule.GetByLoggedUser.Execute());
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateRequestChatRoom request) => new ApiResult(await _chatRoomModule.Create.Execute(request));
 }
