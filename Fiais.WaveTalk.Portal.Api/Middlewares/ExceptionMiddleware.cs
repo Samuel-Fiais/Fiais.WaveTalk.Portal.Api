@@ -33,6 +33,7 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddlewa
                 ApplicationUnauthorizedException => (int)HttpStatusCode.Unauthorized,
                 ApplicationTokenInvalidException => (int)HttpStatusCode.Unauthorized,
                 ApplicationTokenExpiredException => (int)HttpStatusCode.Unauthorized,
+                ApplicationUserDisabledException => (int)HttpStatusCode.Unauthorized,
                 ApplicationInternalServerErrorException => (int)HttpStatusCode.InternalServerError,
                 ApplicationException => (int)HttpStatusCode.BadRequest,
                 _ => (int)HttpStatusCode.InternalServerError

@@ -8,17 +8,17 @@ namespace Fiais.WaveTalk.Portal.Infra.Data.Repositories;
 internal sealed class RepositoryChatRoom : IRepositoryChatRoom
 {
     private readonly ContextDatabase _context;
-    
+
     public RepositoryChatRoom(ContextDatabase context)
     {
         _context = context;
     }
-    
+
     public async Task<ICollection<ChatRoom>> GetAll()
     {
         return await _context.ChatRooms.ToListAsync();
     }
-    
+
     public async Task<ICollection<ChatRoom>> GetByUser(Guid id)
     {
         return await _context.ChatRooms
@@ -27,13 +27,20 @@ internal sealed class RepositoryChatRoom : IRepositoryChatRoom
             .Where(c => c.Users.Any(u => u.Id == id))
             .ToListAsync();
     }
-    
+
     public async Task<ChatRoom?> GetById(Guid id)
     {
         return await _context.ChatRooms
             .Include(c => c.Users)
             .Include(c => c.Owner)
             .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
+    public async Task<ChatRoom?> GetByAlternateId(int alternateId)
+    {
+        return await _context.ChatRooms
+            .Include(c => c.Owner)
+            .FirstOrDefaultAsync(c => c.AlternateId == alternateId);
     }
 
     public async Task<ChatRoom> Create(ChatRoom chatRoom)

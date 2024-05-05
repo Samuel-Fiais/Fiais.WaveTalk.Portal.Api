@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Api", "Fiais.WaveTalk.Portal.Api\Fiais.WaveTalk.Portal.Api.csproj", "{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presenter", "1 - Presenter", "{1151D143-C80C-4126-AE34-51F4F5D79F82}"
@@ -20,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.UseCase.Contracts", "Fiais.WaveTalk.Portal.UseCase.Contracts\Fiais.WaveTalk.Portal.UseCase.Contracts.csproj", "{90EE6FEA-7638-4CF2-9F1B-72B16A9BADF2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Configurations", "5 - Configurations", "{68F73F5E-B17F-4D54-9144-ACC8BA8EE763}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - CrossCutting", "5 - CrossCutting", "{68F73F5E-B17F-4D54-9144-ACC8BA8EE763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Configuration", "Fiais.WaveTalk.Portal.Configuration\Fiais.WaveTalk.Portal.Configuration.csproj", "{AAD4331B-092E-4B81-A95C-E8674AE02A39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.CrossCutting", "Fiais.WaveTalk.Portal.Configuration\Fiais.WaveTalk.Portal.CrossCutting.csproj", "{AAD4331B-092E-4B81-A95C-E8674AE02A39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiais.WaveTalk.Portal.Hub", "Fiais.WaveTalk.Portal.Hub\Fiais.WaveTalk.Portal.Hub.csproj", "{048ADA89-102E-4384-816E-E3D2117B7955}"
 EndProject
@@ -64,6 +67,9 @@ Global
 		{048ADA89-102E-4384-816E-E3D2117B7955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{048ADA89-102E-4384-816E-E3D2117B7955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{048ADA89-102E-4384-816E-E3D2117B7955}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EE70CCE1-FD1E-4F62-BFCE-7C6FF92C0AF4} = {1151D143-C80C-4126-AE34-51F4F5D79F82}

@@ -1,3 +1,4 @@
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.EnterChatRoom;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Authenticate;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
 
@@ -7,4 +8,5 @@ public interface IUserModule
 {
     IAuthenticate Authenticate { get; }
     ICreate Create { get; }
+    IEnterChatRoom EnterChatRoom { get; }
 }

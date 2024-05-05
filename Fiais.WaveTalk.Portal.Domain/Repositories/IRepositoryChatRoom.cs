@@ -7,5 +7,6 @@ public interface IRepositoryChatRoom
     Task<ICollection<ChatRoom>> GetAll();
     Task<ICollection<ChatRoom>> GetByUser(Guid id);
     Task<ChatRoom?> GetById(Guid id);
+    Task<ChatRoom?> GetByAlternateId(int alternateId);
     Task<ChatRoom> Create(ChatRoom chatRoom);
 }

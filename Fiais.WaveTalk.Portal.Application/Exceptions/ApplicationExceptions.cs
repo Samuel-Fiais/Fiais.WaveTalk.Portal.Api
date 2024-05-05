@@ -49,6 +49,9 @@ public class ApplicationUserNotFoundException(string? property = null) : Applica
 public class ApplicationAlreadyExistsException(string? property = null) : ApplicationException(
     $"{ExceptionMessages.AlreadyExists} {(!string.IsNullOrEmpty(property) ? "(" + property + ")" : string.Empty)}"
         .Trim());
-        
+
 public class ApplicationUserDontVinculateWithChatRoomException() : ApplicationException(
     ExceptionMessages.UserDontVinculateWithChatRoom);
+
+public class ApplicationChatRoomPasswordInvalidException() : ApplicationException(
+    ExceptionMessages.ChatRoomPasswordInvalid);

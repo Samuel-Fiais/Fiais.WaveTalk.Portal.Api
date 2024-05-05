@@ -4,6 +4,7 @@ namespace Fiais.WaveTalk.Portal.Domain.Repositories;
 
 public interface IRepositoryUser
 {
+    Task<ICollection<User>> GetAll();
     Task<User?> GetByEmailOrUsername(string? email, string? username);
     Task<User?> GetById(Guid id);
     Task<User?> GetByIdWithChatRooms(Guid id);

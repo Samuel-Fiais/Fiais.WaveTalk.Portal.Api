@@ -14,10 +14,13 @@ internal sealed class RepositoryUser : IRepositoryUser
         _context = context;
     }
 
+    public async Task<ICollection<User>> GetAll() =>
+        await _context.Users.ToListAsync();
+
     public async Task<User?> GetByEmailOrUsername(string? email, string? username) =>
         await _context.Users.FirstOrDefaultAsync(
             x => x.Email == email || x.Username == username);
-    
+
     public async Task<User?> GetById(Guid id) =>
         await _context.Users.FindAsync(id);
 

@@ -14,4 +14,5 @@ public class ExceptionMessages
     public const string UserNotFound = "Usuário não encontrado";
     public const string AlreadyExists = "Já existe um registro com esses dados";
     public const string UserDontVinculateWithChatRoom = "Usuário não vinculado a sala de chat";
+    public const string ChatRoomPasswordInvalid = "Senha do chat inválida";
 }

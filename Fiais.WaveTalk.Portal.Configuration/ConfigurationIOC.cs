@@ -10,6 +10,7 @@ using Fiais.WaveTalk.Portal.Infra.Data.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByCode;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByLoggedUser;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.Message;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetByChatRoom;
@@ -29,21 +30,28 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Fiais.WaveTalk.Portal.Configuration;
 
-public static class Configuration
+public static class ConfigurationIoc
 {
     public static void LoadMapper(IServiceCollection services)
     {
         var autoMapper = new MapperConfiguration(config =>
         {
             config.CreateMap<ChatRoom, GetResponse>();
+
             config.CreateMap<ChatRoom, GetByLoggedUserResponse>()
                 .ForMember(x => x.OwnerName, x => x.MapFrom(y => y.Owner!.Name))
                 .ForMember(x => x.OwnerUsername, x => x.MapFrom(y => y.Owner!.Username))
                 .ForMember(x => x.OwnerEmail, x => x.MapFrom(y => y.Owner!.Email))
                 .ForMember(x => x.AlternateId, x => x.MapFrom(x => x.AlternateId.ToString().PadLeft(5, '0')));
+
+            config.CreateMap<ChatRoom, GetByCodeResponse>()
+                .ForMember(x => x.OwnerName, x => x.MapFrom(y => y.Owner!.Name));
+
             config.CreateMap<User, GetByLoggedUserResponse.User>();
+
             config.CreateMap<Message, GetByChatRoomResponse>()
                 .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
+
             config.CreateMap<CreateRequestChatRoom, ChatRoom>();
 
             config.CreateMap<Message, MessageResponse>()
@@ -75,7 +83,7 @@ public static class Configuration
         services.AddScoped<IRepositoryModule, RepositoryModule>();
 
         services.AddSingleton<ConnectionSingleton>();
-        
+
         services.AddSignalR();
     }
 

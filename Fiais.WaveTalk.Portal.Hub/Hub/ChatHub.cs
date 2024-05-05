@@ -11,13 +11,12 @@ namespace Fiais.WaveTalk.Portal.Hub.Hub;
 public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
 {
     private readonly IRepositoryModule _repositoryModule;
-    private readonly IUserContext _userContext;
     private readonly ConnectionSingleton _connectionSingleton;
     private readonly IMapper _mapper;
+    private static ICollection<User> _users = [];
 
     public ChatHub(
         IRepositoryModule repositoryModule,
-        IUserContext userContext,
         ConnectionSingleton connectionSingleton,
         IMapper mapper
     )
@@ -30,6 +29,7 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
     public override async Task OnConnectedAsync()
     {
         var chatRooms = await _repositoryModule.ChatRoomRepository.GetAll();
+        _users = await _repositoryModule.UserRepository.GetAll() ?? [];
 
         foreach (var chatRoom in chatRooms)
         {
@@ -74,6 +74,7 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
                 };
 
                 var messageCreated = await _repositoryModule.MessageRepository.Create(messageEntity);
+                messageCreated.User = _users.FirstOrDefault(x => x.Id == messageCreated.UserId);
 
                 await Clients.Group(chatRoomId.ToString()).SendAsync("ReceiveMessage", _mapper.Map<MessageResponse>(messageCreated));
             }

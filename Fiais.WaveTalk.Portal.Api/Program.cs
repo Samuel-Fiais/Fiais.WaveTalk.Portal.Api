@@ -4,11 +4,11 @@ using Fiais.WaveTalk.Portal.Hub.Hub;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Configuration.LoadMapper(builder.Services);
-Configuration.LoadServices(builder.Services, builder.Configuration);
-Configuration.LoadDatabase(builder.Services);
-Configuration.LoadValidate(builder.Services);
-Configuration.LoadSwagger(builder.Services, builder.Configuration);
+ConfigurationIoc.LoadMapper(builder.Services);
+ConfigurationIoc.LoadServices(builder.Services, builder.Configuration);
+ConfigurationIoc.LoadDatabase(builder.Services);
+ConfigurationIoc.LoadValidate(builder.Services);
+ConfigurationIoc.LoadSwagger(builder.Services, builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

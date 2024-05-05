@@ -27,12 +27,7 @@ internal sealed class GetByLoggedUser : IGetByLoggedUser
     {
         var userId = _userContext.Id;
 
-        await Task.Delay(2000);
-
-        if (userId == Guid.Empty || userId == null)
-        {
-            throw new ApplicationUserNotFoundException();
-        }
+        if (userId == Guid.Empty || userId == null) throw new ApplicationUserNotFoundException();
 
         var chatRooms = await _repositoryModule.ChatRoomRepository.GetByUser((Guid)userId);
 
