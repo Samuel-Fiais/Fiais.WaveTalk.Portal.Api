@@ -5,7 +5,7 @@ using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Cases.User;
 
-public class Create : ICreate
+public sealed class Create : ICreate
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IMapper _mapper;

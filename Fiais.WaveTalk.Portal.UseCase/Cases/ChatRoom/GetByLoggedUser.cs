@@ -6,7 +6,7 @@ using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByLoggedUser;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Cases.ChatRoom;
 
-internal sealed class GetByLoggedUser : IGetByLoggedUser
+public sealed class GetByLoggedUser : IGetByLoggedUser
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IUserContext _userContext;

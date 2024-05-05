@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Cases.User;
 
-internal sealed class Authenticate : IAuthenticate
+public sealed class Authenticate : IAuthenticate
 {
     private readonly IRepositoryModule _repositoryModule;
     

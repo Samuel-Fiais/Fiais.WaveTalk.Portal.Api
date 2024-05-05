@@ -6,7 +6,7 @@ using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.EnterChatRoom;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Cases.User;
 
-public class EnterChatRoom : IEnterChatRoom
+public sealed class EnterChatRoom : IEnterChatRoom
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IUserContext _userContext;

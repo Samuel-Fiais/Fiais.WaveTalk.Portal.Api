@@ -6,7 +6,7 @@ using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Cases.ChatRoom;
 
-internal sealed class Create : ICreate
+public sealed class Create : ICreate
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IUserContext _userContext;

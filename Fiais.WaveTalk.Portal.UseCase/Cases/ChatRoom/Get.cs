@@ -4,7 +4,7 @@ using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
 
 namespace Fiais.WaveTalk.Portal.UseCase.Cases.ChatRoom;
 
-internal sealed class Get : IGet
+public sealed class Get : IGet
 {
     private readonly IRepositoryModule _repositoryModule;
     private readonly IMapper _mapper;
