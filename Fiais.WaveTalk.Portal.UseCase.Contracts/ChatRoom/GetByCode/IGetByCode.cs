@@ -2,5 +2,5 @@
 
 public interface IGetByCode
 {
-    Task<GetByCodeResponse> ExecuteAsync(string code);
+    Task<GetByCodeResponse> Execute(string code);
 }

@@ -23,7 +23,7 @@ public class ChatRoomController : ControllerBase
     public async Task<IActionResult> GetByLoggedUser() => new ApiResult(await _chatRoomModule.GetByLoggedUser.Execute());
 
     [HttpGet("{code}")]
-    public async Task<IActionResult> GetByCode(string code) => new ApiResult(await _chatRoomModule.GetByCode.ExecuteAsync(code));
+    public async Task<IActionResult> GetByCode(string code) => new ApiResult(await _chatRoomModule.GetByCode.Execute(code));
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateRequestChatRoom request) => new ApiResult(await _chatRoomModule.Create.Execute(request));

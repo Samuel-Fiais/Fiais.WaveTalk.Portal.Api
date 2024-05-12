@@ -15,7 +15,7 @@ public sealed record GetByLoggedUserResponse
     public sealed record User
     {
         public Guid Id { get; init; } = Guid.Empty;
-        public string AlternateId { get; init; } = string.Empty;
+        public int AlternateId { get; init; }
         public string Email { get; init; } = string.Empty;
         public string Name { get; init; } = string.Empty;
         public string Username { get; init; } = string.Empty;

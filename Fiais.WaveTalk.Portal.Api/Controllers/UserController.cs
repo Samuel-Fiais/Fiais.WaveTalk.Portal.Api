@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
+
 using Fiais.WaveTalk.Portal.Api.Middlewares;
 using Fiais.WaveTalk.Portal.UseCase.Contracts;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Fiais.WaveTalk.Portal.Api.Controllers;
 

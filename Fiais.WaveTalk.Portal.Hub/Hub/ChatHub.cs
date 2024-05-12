@@ -1,10 +1,11 @@
+using Microsoft.AspNetCore.SignalR;
+
 using AutoMapper;
-using Fiais.WaveTalk.Portal.Domain.Context;
+
 using Fiais.WaveTalk.Portal.Domain.Entity;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.Hub.Models;
 using Fiais.WaveTalk.Portal.Hub.Shared;
-using Microsoft.AspNetCore.SignalR;
 
 namespace Fiais.WaveTalk.Portal.Hub.Hub;
 
