@@ -17,7 +17,7 @@ public sealed class ContextDatabaseFactory : IDesignTimeDbContextFactory<Context
 
         var optionsBuilder = new DbContextOptionsBuilder<ContextDatabase>();
 
-        optionsBuilder.UseSqlite(connection)
+        optionsBuilder.UseSqlServer(connection)
             .EnableSensitiveDataLogging(false)
             .EnableDetailedErrors(false);
 

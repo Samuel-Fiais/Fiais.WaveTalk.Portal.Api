@@ -13,7 +13,7 @@ public class CreateRequestChatRoom
     public void Format()
     {
         Description = Description.Trim();
-        Password = string.IsNullOrEmpty(Password) ? null : Password.Trim();
+        Password = string.IsNullOrEmpty(Password) ? null : Password.Trim().Encrypt();
         IsPrivate = string.IsNullOrEmpty(Password) is false;
     }
 }

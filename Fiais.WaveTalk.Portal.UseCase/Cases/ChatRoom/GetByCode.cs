@@ -16,7 +16,7 @@ public sealed class GetByCode : IGetByCode
         _mapper = mapper;
     }
 
-    public async Task<GetByCodeResponse> ExecuteAsync(string code)
+    public async Task<GetByCodeResponse> Execute(string code)
     {
         if (!int.TryParse(code, out var alternateId)) throw new ApplicationNotFoundException("ChatRoom");
 

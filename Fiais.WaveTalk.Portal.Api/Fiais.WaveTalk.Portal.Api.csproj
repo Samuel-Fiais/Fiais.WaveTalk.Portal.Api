@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Fiais.WaveTalk.Portal.Configuration\Fiais.WaveTalk.Portal.CrossCutting.csproj" />
+      <ProjectReference Include="..\Fiais.WaveTalk.Portal.UseCase.Contracts\Fiais.WaveTalk.Portal.UseCase.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

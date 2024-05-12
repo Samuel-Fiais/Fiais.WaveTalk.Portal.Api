@@ -1,23 +1,4 @@
-﻿using AutoMapper;
-using Fiais.WaveTalk.Portal.Application.Helpers;
-using Fiais.WaveTalk.Portal.Domain.Context;
-using Fiais.WaveTalk.Portal.Domain.Entity;
-using Fiais.WaveTalk.Portal.Domain.Repositories;
-using Fiais.WaveTalk.Portal.Hub.Models;
-using Fiais.WaveTalk.Portal.Hub.Shared;
-using Fiais.WaveTalk.Portal.Infra.Data.Context;
-using Fiais.WaveTalk.Portal.Infra.Data.Repositories;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByCode;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByLoggedUser;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.Message;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.Message.GetByChatRoom;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.User;
-using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
-using Fiais.WaveTalk.Portal.UseCase.Modules;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,39 +7,28 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
+using Fiais.WaveTalk.Portal.Application.Helpers;
+using Fiais.WaveTalk.Portal.CrossCutting.Mapper;
+using Fiais.WaveTalk.Portal.Domain.Context;
+using Fiais.WaveTalk.Portal.Domain.Repositories;
+using Fiais.WaveTalk.Portal.Hub.Shared;
+using Fiais.WaveTalk.Portal.Infra.Data.Context;
+using Fiais.WaveTalk.Portal.Infra.Data.Repositories;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.Message;
+using Fiais.WaveTalk.Portal.UseCase.Contracts.User;
+using Fiais.WaveTalk.Portal.UseCase.Modules;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Fiais.WaveTalk.Portal.Configuration;
+namespace Fiais.WaveTalk.Portal.CrossCutting;
 
 public static class ConfigurationIoc
 {
     public static void LoadMapper(IServiceCollection services)
     {
-        var autoMapper = new MapperConfiguration(config =>
-        {
-            config.CreateMap<ChatRoom, GetResponse>();
-
-            config.CreateMap<ChatRoom, GetByLoggedUserResponse>()
-                .ForMember(x => x.OwnerName, x => x.MapFrom(y => y.Owner!.Name))
-                .ForMember(x => x.OwnerUsername, x => x.MapFrom(y => y.Owner!.Username))
-                .ForMember(x => x.OwnerEmail, x => x.MapFrom(y => y.Owner!.Email))
-                .ForMember(x => x.AlternateId, x => x.MapFrom(x => x.AlternateId.ToString().PadLeft(5, '0')));
-
-            config.CreateMap<ChatRoom, GetByCodeResponse>()
-                .ForMember(x => x.OwnerName, x => x.MapFrom(y => y.Owner!.Name));
-
-            config.CreateMap<User, GetByLoggedUserResponse.User>();
-
-            config.CreateMap<Message, GetByChatRoomResponse>()
-                .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
-
-            config.CreateMap<CreateRequestChatRoom, ChatRoom>();
-
-            config.CreateMap<Message, MessageResponse>()
-                .ForMember(x => x.Username, x => x.MapFrom(y => y.User!.Username));
-
-            config.CreateMap<CreateRequestUser, User>();
-        });
+        var autoMapper = MapperConfig.GetMapperConfiguration();
 
         var mapper = autoMapper.CreateMapper();
         services.AddSingleton(mapper);

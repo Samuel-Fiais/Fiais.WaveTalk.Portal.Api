@@ -1,5 +1,5 @@
 using Fiais.WaveTalk.Portal.Api.Middlewares;
-using Fiais.WaveTalk.Portal.Configuration;
+using Fiais.WaveTalk.Portal.CrossCutting;
 using Fiais.WaveTalk.Portal.Hub.Hub;
 
 var builder = WebApplication.CreateBuilder(args);
