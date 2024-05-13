@@ -63,4 +63,3 @@ jobs:
           app-name: "Fiais-WaveTalk-Portal-Api"
           slot-name: "Production"
           package: .
-          startup-command: "dotnet Fiais-WaveTalk-Portal-Api.dll"
