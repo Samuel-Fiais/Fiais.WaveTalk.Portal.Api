@@ -19,6 +19,8 @@ public sealed class EnterChatRoom : IEnterChatRoom
 
     public async Task<bool> Execute(EnterChatRoomRequest request)
     {
+        request.Format();
+
         var userId = _userContext.Id ?? Guid.Empty;
         var user = await _repositoryModule.UserRepository.GetById(userId)
             ?? throw new ApplicationUserNotFoundException();
