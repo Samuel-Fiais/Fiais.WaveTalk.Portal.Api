@@ -21,7 +21,7 @@ public class UserContext : IUserContext
             return id is null ? null : Guid.Parse(Encoding.UTF8.GetString(id));
         }
     }
-    
+
     public string? Name
     {
         get
@@ -31,7 +31,7 @@ public class UserContext : IUserContext
             return name is null ? null : Encoding.UTF8.GetString(name);
         }
     }
-    
+
     public string? Username
     {
         get
@@ -41,7 +41,7 @@ public class UserContext : IUserContext
             return username is null ? null : Encoding.UTF8.GetString(username);
         }
     }
-    
+
     public string? Email
     {
         get

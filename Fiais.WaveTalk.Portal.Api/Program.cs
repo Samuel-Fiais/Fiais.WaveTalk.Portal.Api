@@ -4,7 +4,6 @@ using Fiais.WaveTalk.Portal.Hub.Hub;
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigurationIoc.LoadMapper(builder.Services);
 ConfigurationIoc.LoadServices(builder.Services, builder.Configuration);
 ConfigurationIoc.LoadDatabase(builder.Services);
 ConfigurationIoc.LoadValidate(builder.Services);

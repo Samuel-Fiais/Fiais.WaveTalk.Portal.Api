@@ -22,7 +22,9 @@ internal sealed class RepositoryUser : IRepositoryUser
             x => x.Email == email || x.Username == username);
 
     public async Task<User?> GetById(Guid id) =>
-        await _context.Users.FindAsync(id);
+        await _context.Users
+        .Include(u => u.ChatRooms)
+        .FirstOrDefaultAsync(u => u.Id == id);
 
     public async Task<User?> GetByIdWithChatRooms(Guid id) =>
         await _context.Users

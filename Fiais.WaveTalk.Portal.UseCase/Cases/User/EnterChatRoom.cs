@@ -22,6 +22,9 @@ public sealed class EnterChatRoom : IEnterChatRoom
         request.Format();
 
         var userId = _userContext.Id ?? Guid.Empty;
+
+        if (userId == Guid.Empty) throw new ApplicationUserNotFoundException();
+
         var user = await _repositoryModule.UserRepository.GetById(userId)
             ?? throw new ApplicationUserNotFoundException();
 
@@ -34,8 +37,7 @@ public sealed class EnterChatRoom : IEnterChatRoom
             if (!authorize) throw new ApplicationChatRoomPasswordInvalidException();
         }
 
-        user.ChatRooms ??= [];
-        if (user.ChatRooms.All(x => x.Id != request.ChatRoomId))
+        if (!user.ChatRoomIsVinculated(chatRoom.Id))
         {
             user.ChatRooms.Add(chatRoom);
             await _repositoryModule.UserRepository.Update(user);

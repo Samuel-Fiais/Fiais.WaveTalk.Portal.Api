@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using Fiais.WaveTalk.Portal.Application.Helpers;
-using Fiais.WaveTalk.Portal.CrossCutting.Mapper;
 using Fiais.WaveTalk.Portal.Domain.Context;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.Hub.Shared;
@@ -21,19 +20,12 @@ using Fiais.WaveTalk.Portal.UseCase.Contracts.User;
 using Fiais.WaveTalk.Portal.UseCase.Modules;
 
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Text;
 
 namespace Fiais.WaveTalk.Portal.CrossCutting;
 
 public static class ConfigurationIoc
 {
-    public static void LoadMapper(IServiceCollection services)
-    {
-        var autoMapper = MapperConfig.GetMapperConfiguration();
-
-        var mapper = autoMapper.CreateMapper();
-        services.AddSingleton(mapper);
-    }
-
     public static void LoadServices(IServiceCollection services, IConfigurationBuilder config)
     {
         services.TryAddSingleton(config);
@@ -147,6 +139,9 @@ public static class ConfigurationIoc
     {
         o.TokenValidationParameters = new TokenValidationParameters
         {
+            ValidIssuer = config["Jwt:Issuer"],
+            ValidAudience = config["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"] ?? string.Empty)),
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = false,

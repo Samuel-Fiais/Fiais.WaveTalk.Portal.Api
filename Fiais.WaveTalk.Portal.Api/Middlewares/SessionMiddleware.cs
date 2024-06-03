@@ -7,7 +7,7 @@ public class SessionMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<SessionMiddleware> _logger;
-    
+
     public SessionMiddleware(RequestDelegate next, ILogger<SessionMiddleware> logger)
     {
         _next = next;
@@ -20,17 +20,17 @@ public class SessionMiddleware
 
         try
         {
-            if (!string.IsNullOrEmpty(token))
+            if (!string.IsNullOrEmpty(token) && context.Request.Path.Value?.Contains("auth") == false)
             {
                 var jwtSecurityToken =
                     new JwtSecurityTokenHandler().ReadJwtToken(token.ToString().Replace("Bearer ", "").Trim());
                 var claims = jwtSecurityToken.Claims.ToList();
-            
+
                 context.Session.SetString("id", claims.FirstOrDefault(x => x.Type == "id")?.Value ?? "");
                 context.Session.SetString("name", claims.FirstOrDefault(x => x.Type == "name")?.Value ?? "");
                 context.Session.SetString("username", claims.FirstOrDefault(x => x.Type == "username")?.Value ?? "");
                 context.Session.SetString("email", claims.FirstOrDefault(x => x.Type == "email")?.Value ?? "");
-                
+
                 var exp = jwtSecurityToken.Claims.FirstOrDefault(x => x.Type == "exp")?.Value;
                 if (exp is not null)
                 {
@@ -39,14 +39,15 @@ public class SessionMiddleware
                         throw new ApplicationTokenExpiredException();
                 }
             }
-            
-        } catch (Exception e)
+
+        }
+        catch (Exception e)
         {
             if (e is ApplicationTokenExpiredException) throw;
-            
+
             throw new ApplicationTokenInvalidException();
         }
-        
+
         await _next(context);
     }
 }

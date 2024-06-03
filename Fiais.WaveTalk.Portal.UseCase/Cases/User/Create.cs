@@ -1,4 +1,3 @@
-using AutoMapper;
 using Fiais.WaveTalk.Portal.Application.Exceptions;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
@@ -8,12 +7,10 @@ namespace Fiais.WaveTalk.Portal.UseCase.Cases.User;
 public sealed class Create : ICreate
 {
     private readonly IRepositoryModule _repositoryModule;
-    private readonly IMapper _mapper;
 
-    public Create(IRepositoryModule repositoryModule, IMapper mapper)
+    public Create(IRepositoryModule repositoryModule)
     {
         _repositoryModule = repositoryModule;
-        _mapper = mapper;
     }
 
     public async Task<bool> Execute(CreateRequestUser request)
@@ -21,7 +18,13 @@ public sealed class Create : ICreate
         request.Format();
         await Validate(request.Email, request.Username);
 
-        var user = _mapper.Map<Domain.Entity.User>(request);
+        var user = new Domain.Entity.User
+        (
+            request.Username,
+            request.Email,
+            request.Name,
+            request.Password
+        );
 
         await _repositoryModule.UserRepository.Create(user);
 

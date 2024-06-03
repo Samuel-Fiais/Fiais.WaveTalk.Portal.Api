@@ -1,12 +1,14 @@
 using Fiais.WaveTalk.Portal.Api.Middlewares;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Create;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiais.WaveTalk.Portal.Api.Controllers;
 
 [ApiController]
 [Route("chat-rooms")]
+[Authorize]
 public class ChatRoomController : ControllerBase
 {
     private readonly IChatRoomModule _chatRoomModule;

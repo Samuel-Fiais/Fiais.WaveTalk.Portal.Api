@@ -16,7 +16,8 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5249",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "Server=tcp:personal-database-server.database.windows.net,1433;Initial Catalog=wavetalk-database;Persist Security Info=False;User ID=personal-root-database;Password=100Symon#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False"
       }
     },
     "https": {

@@ -1,4 +1,3 @@
-using AutoMapper;
 using Fiais.WaveTalk.Portal.Domain.Context;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Cases.ChatRoom;
@@ -12,12 +11,12 @@ namespace Fiais.WaveTalk.Portal.UseCase.Modules;
 
 public sealed class ChatRoomModule : IChatRoomModule
 {
-    public ChatRoomModule(IRepositoryModule module, IUserContext userContext, IMapper mapper)
+    public ChatRoomModule(IRepositoryModule module, IUserContext userContext)
     {
-        Get = new Get(module, mapper);
-        GetByLoggedUser = new GetByLoggedUser(module, userContext, mapper);
-        GetByCode = new GetByCode(module, mapper);
-        Create = new Create(module, userContext, mapper);
+        Get = new Get(module);
+        GetByLoggedUser = new GetByLoggedUser(module, userContext);
+        GetByCode = new GetByCode(module);
+        Create = new Create(module, userContext);
     }
 
     public IGet Get { get; }

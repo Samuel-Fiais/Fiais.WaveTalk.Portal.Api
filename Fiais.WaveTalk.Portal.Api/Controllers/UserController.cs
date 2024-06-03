@@ -4,11 +4,13 @@ using Fiais.WaveTalk.Portal.Api.Middlewares;
 using Fiais.WaveTalk.Portal.UseCase.Contracts;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.User.Create;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fiais.WaveTalk.Portal.Api.Controllers;
 
 [ApiController]
 [Route("users")]
+[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IUserModule _userModule;

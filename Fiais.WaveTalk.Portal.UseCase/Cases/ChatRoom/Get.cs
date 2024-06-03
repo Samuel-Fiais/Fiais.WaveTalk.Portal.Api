@@ -1,4 +1,3 @@
-using AutoMapper;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.Get;
 
@@ -7,18 +6,29 @@ namespace Fiais.WaveTalk.Portal.UseCase.Cases.ChatRoom;
 public sealed class Get : IGet
 {
     private readonly IRepositoryModule _repositoryModule;
-    private readonly IMapper _mapper;
 
-    public Get(IRepositoryModule repositoryModule, IMapper mapper)
+    public Get(IRepositoryModule repositoryModule)
     {
         _repositoryModule = repositoryModule;
-        _mapper = mapper;
     }
 
     public async Task<ICollection<GetResponse>> Execute()
     {
         var chatRooms = await _repositoryModule.ChatRoomRepository.GetAll();
 
-        return _mapper.Map<ICollection<GetResponse>>(chatRooms);
+        return new List<GetResponse>
+        (
+            chatRooms.Select
+            (
+                chatRoom => new GetResponse
+                (
+                    chatRoom.Id,
+                    chatRoom.CreatedAt,
+                    chatRoom.Description,
+                    chatRoom.OwnerId,
+                    chatRoom.IsPrivate
+                )
+            )
+        );
     }
 }

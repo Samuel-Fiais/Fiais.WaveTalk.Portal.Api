@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Fiais.WaveTalk.Portal.Application.Exceptions;
+﻿using Fiais.WaveTalk.Portal.Application.Exceptions;
 using Fiais.WaveTalk.Portal.Domain.Repositories;
 using Fiais.WaveTalk.Portal.UseCase.Contracts.ChatRoom.GetByCode;
 
@@ -8,12 +7,10 @@ namespace Fiais.WaveTalk.Portal.UseCase.Cases.ChatRoom;
 public sealed class GetByCode : IGetByCode
 {
     private readonly IRepositoryModule _repositoryModule;
-    private readonly IMapper _mapper;
 
-    public GetByCode(IRepositoryModule repositoryModule, IMapper mapper)
+    public GetByCode(IRepositoryModule repositoryModule)
     {
         _repositoryModule = repositoryModule;
-        _mapper = mapper;
     }
 
     public async Task<GetByCodeResponse> Execute(string code)
@@ -23,6 +20,12 @@ public sealed class GetByCode : IGetByCode
         var chatRoom = await _repositoryModule.ChatRoomRepository.GetByAlternateId(alternateId)
             ?? throw new ApplicationNotFoundException("ChatRoom");
 
-        return _mapper.Map<GetByCodeResponse>(chatRoom);
+        return new GetByCodeResponse
+        (
+            chatRoom.Id,
+            chatRoom.Description,
+            chatRoom.Owner?.Name ?? string.Empty,
+            chatRoom.IsPrivate
+        );
     }
 }
