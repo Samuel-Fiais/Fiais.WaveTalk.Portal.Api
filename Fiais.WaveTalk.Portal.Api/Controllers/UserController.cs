@@ -10,7 +10,6 @@ namespace Fiais.WaveTalk.Portal.Api.Controllers;
 
 [ApiController]
 [Route("users")]
-[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IUserModule _userModule;
@@ -25,6 +24,7 @@ public class UserController : ControllerBase
         new ApiResult(await _userModule.Create.Execute(request));
 
     [HttpPost("enter-chat-room")]
+    [Authorize]
     public async Task<IActionResult> EnterChatRoom([FromBody] EnterChatRoomRequest request) =>
         new ApiResult(await _userModule.EnterChatRoom.Execute(request));
 }
