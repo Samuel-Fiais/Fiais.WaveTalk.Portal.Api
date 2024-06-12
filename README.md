@@ -122,14 +122,13 @@ This documentation outlines the API endpoints and their rules.
 
 **Success Response (200 OK):**
 
-````json
+```json
 {
   "success": true,
   "message": null,
   "data": [
     {
-      "Id": "00```json
-     "0000-0000-0000-0000-000000000001",
+      "Id": "0000-0000-0000-0000-000000000001",
       "AlternateId": "0001",
       "CreatedAt": "2021-01-01T00:00:00",
       "IsPrivate": true,
@@ -182,7 +181,7 @@ This documentation outlines the API endpoints and their rules.
     }
   ]
 }
-````
+```
 
 **Error Responses:**
 
