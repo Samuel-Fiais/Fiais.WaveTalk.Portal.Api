@@ -21,9 +21,7 @@ public sealed class EnterChatRoom : IEnterChatRoom
     {
         request.Format();
 
-        var userId = _userContext.Id ?? Guid.Empty;
-
-        if (userId == Guid.Empty) throw new ApplicationUserNotFoundException();
+        var userId = _userContext.Id ?? throw new ApplicationUserNotFoundException();
 
         var user = await _repositoryModule.UserRepository.GetById(userId)
             ?? throw new ApplicationUserNotFoundException();

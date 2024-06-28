@@ -22,21 +22,6 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
         _connectionSingleton = connectionSingleton;
     }
 
-    // public override async Task OnConnectedAsync()
-    // {
-    //     // var chatRooms = await _repositoryModule.ChatRoomRepository.GetAll();
-    //     // _users = await _repositoryModule.UserRepository.GetAll() ?? [];
-
-    //     // foreach (var chatRoom in chatRooms)
-    //     // {
-    //     //     var userId = _connectionSingleton.Connections[Context.ConnectionId]?.UserId;
-    //     //     if (userId.HasValue && await IsUserInChatRoom(userId.Value, chatRoom.Id))
-    //     //     {
-    //     //         await Groups.AddToGroupAsync(Context.ConnectionId, chatRoom.Id.ToString());
-    //     //     }
-    //     // }
-    // }
-
     public async Task JoinChat(Guid userId)
     {
         if (userId == Guid.Empty) return;

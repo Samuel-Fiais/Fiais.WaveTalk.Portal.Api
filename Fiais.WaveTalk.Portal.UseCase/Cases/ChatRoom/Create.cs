@@ -32,7 +32,6 @@ public sealed class Create : ICreate
         var chatRoom = new Domain.Entity.ChatRoom
         (
             request.Description,
-            request.IsPrivate,
             request.Password,
             userId
         );

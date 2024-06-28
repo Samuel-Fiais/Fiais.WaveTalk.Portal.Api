@@ -21,11 +21,11 @@ public sealed class GetByLoggedUser : IGetByLoggedUser
 
     public async Task<ICollection<GetByLoggedUserResponse>> Execute()
     {
-        var userId = _userContext.Id;
+        var userId = _userContext.Id ?? Guid.Empty;
 
-        if (userId == Guid.Empty || userId == null) throw new ApplicationUserNotFoundException();
+        if (userId == Guid.Empty) throw new ApplicationUserNotFoundException();
 
-        var chatRooms = await _repositoryModule.ChatRoomRepository.GetByUser((Guid)userId);
+        var chatRooms = await _repositoryModule.ChatRoomRepository.GetByUser(userId);
 
         chatRooms = [.. chatRooms.OrderByDescending(x => x.AlternateId)];
         var response = chatRooms.Select(x =>
